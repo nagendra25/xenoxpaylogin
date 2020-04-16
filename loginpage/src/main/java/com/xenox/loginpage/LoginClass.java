@@ -24,7 +24,7 @@ public class LoginClass {
     public static String getDistanceInKm(){
         return "done this";
     }
-    public static String userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
+    public static JSONObject userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
         String xAccessToken = "mykey";
         final JSONObject object = new JSONObject();
 
@@ -53,7 +53,6 @@ public class LoginClass {
                     if (response.body().getSuccess().equalsIgnoreCase("1")) {
 
                         Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
                         String saveName = response.body().getProfile().getUsername();
                         String saveUserEmail = response.body().getProfile().getEmail();
                         String saveUserPassword = strPassword;
@@ -68,6 +67,7 @@ public class LoginClass {
                             object.put("Mobile", saveUserMobile);
                             object.put("UserId", saveUserId);
                             object.put("Wallet_id", saveWalletId);
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -87,6 +87,8 @@ public class LoginClass {
             }
         });
 
-        return object.toString();
+        return object;
+
+
     }
 }
