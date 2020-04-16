@@ -11,9 +11,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String naw1 =LoginClass.getDistanceInKm(0,0,0,0);
 
-        String diistance = LoginClass.getDistanceInKm(0,0,0,0,0);
-        Log.d("distance432342",diistance+"");
+        Log.d("new232",naw1 );
+
+
 
 
     }
