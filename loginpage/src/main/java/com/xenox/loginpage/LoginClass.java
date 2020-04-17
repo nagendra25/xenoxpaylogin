@@ -3,6 +3,7 @@ package com.xenox.loginpage;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.util.Log;
 
@@ -18,6 +19,8 @@ import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class LoginClass {
 
@@ -53,17 +56,22 @@ public class LoginClass {
 
                 if (response.isSuccessful()) {
 
+
                         if (response.body().getSuccess().equalsIgnoreCase("1")) {
                             Status = "1";
 
                         Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                         name = response.body().getProfile().getUsername();
+                             name = response.body().getProfile().getUsername();
                          Email = response.body().getProfile().getEmail();
                          Password = strPassword;
                          Mobile = response.body().getProfile().getMobile();
                          UserId = response.body().getProfile().getUserId();
                          WalletId = response.body().getProfile().getWallet_id();
                             getWalletBalance(WalletId);
+
+                            SharedPreferences.Editor editor =activity. getSharedPreferences("Logindata", MODE_PRIVATE).edit();
+                            editor.putString("name012", name);
+
 
 
 

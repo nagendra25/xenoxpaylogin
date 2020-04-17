@@ -18,8 +18,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         LoginClass.userLoginRequest(MainActivity.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2");
-      String name =  LoginClass.name;
-      String mobile = LoginClass.Mobile;
+
+        if (LoginClass.Status.equalsIgnoreCase("1")){
+            String name =  LoginClass.name;
+            String mobile = LoginClass.Mobile;
+
+            Log.d("name25242",name);
+        }
+
+
 
 
 
