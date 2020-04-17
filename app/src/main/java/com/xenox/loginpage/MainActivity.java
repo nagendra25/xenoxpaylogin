@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
         String naw1 =LoginClass.getDistanceInKm();
 
 
-       JSONObject api242 =LoginClass.userLoginRequest(MainActivity.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2");
+        LoginClass.userLoginRequest(MainActivity.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2");
+      String name =  LoginClass.name;
+      String mobile = LoginClass.Mobile;
 
 
 
