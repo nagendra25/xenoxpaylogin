@@ -2,6 +2,7 @@ package com.xenox.loginpage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d("name25242",name);
         }
+
+
 
 
 

@@ -33,9 +33,10 @@ public class LoginClass {
     public  static String Status = "";
     public static String mainWalletBalance ="";
 
+    public UserProfileOutput userProfileOutput;
 
     public static String getDistanceInKm(){
-        return "done this";
+        return name;
     }
     public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
         String xAccessToken = "mykey";
@@ -69,8 +70,6 @@ public class LoginClass {
                          WalletId = response.body().getProfile().getWallet_id();
                             getWalletBalance(WalletId);
 
-                            SharedPreferences.Editor editor =activity. getSharedPreferences("Logindata", MODE_PRIVATE).edit();
-                            editor.putString("name012", name);
 
 
 
