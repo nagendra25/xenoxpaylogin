@@ -38,7 +38,8 @@ public class LoginClass {
     public static String getDistanceInKm(){
         return name;
     }
-    public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
+    public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId,
+    @Nullable final RevealCourtPlaceCallbacks callbacks) {
         String xAccessToken = "mykey";
 
         MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
@@ -69,6 +70,9 @@ public class LoginClass {
                          UserId = response.body().getProfile().getUserId();
                          WalletId = response.body().getProfile().getWallet_id();
                             getWalletBalance(WalletId);
+
+                            if (callbacks != null)
+                                callbacks.onSuccess(name);
 
 
 

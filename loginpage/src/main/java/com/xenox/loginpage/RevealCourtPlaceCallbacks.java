@@ -2,7 +2,7 @@ package com.xenox.loginpage;
 
 import androidx.annotation.NonNull;
 
-public interface RevealCourtPlaceCallbacks {
+public  interface RevealCourtPlaceCallbacks {
 
     void onSuccess(@NonNull String value);
 
