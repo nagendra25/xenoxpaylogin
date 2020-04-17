@@ -19,4 +19,12 @@ public interface MainAPIInterface {
             @Part MultipartBody.Part password
     );
 
+    @Multipart
+    @POST(Constants.GET_WALLET_TRANSACTIONS)
+    Call<GetWalletTransactionsOutput> getWalletTransactions(
+            @Header("X-API-KEY") String xAccessToken,
+            @Part MultipartBody.Part wallet_id
+
+    );
+
 }

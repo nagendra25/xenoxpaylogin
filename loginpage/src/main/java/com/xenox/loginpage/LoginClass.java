@@ -8,6 +8,7 @@ import android.util.Log;
 
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
@@ -20,20 +21,23 @@ import retrofit2.Response;
 
 public class LoginClass {
 
+    public static  String name="";
+    public static  String Email="";
+    public static  String Password="";
+    public static  String Mobile="";
+    public static  String UserId="";
+    public static String WalletId="";
+    public  static String Status = "";
+    public static String mainWalletBalance ="";
+
 
     public static String getDistanceInKm(){
         return "done this";
     }
-    public static JSONObject userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
+    public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
         String xAccessToken = "mykey";
-        final JSONObject object = new JSONObject();
-
-
 
         MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
-
-
-
 
         MultipartBody.Part phone_body = MultipartBody.Part.createFormData("phone_no", strMobile);
 
@@ -49,35 +53,23 @@ public class LoginClass {
 
                 if (response.isSuccessful()) {
 
-
-                    if (response.body().getSuccess().equalsIgnoreCase("1")) {
+                        if (response.body().getSuccess().equalsIgnoreCase("1")) {
+                            Status = "1";
 
                         Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        String saveName = response.body().getProfile().getUsername();
-                        String saveUserEmail = response.body().getProfile().getEmail();
-                        String saveUserPassword = strPassword;
-                        String saveUserMobile = response.body().getProfile().getMobile();
-                        String saveUserId = response.body().getProfile().getUserId();
-                        String saveWalletId = response.body().getProfile().getWallet_id();
-
-                        try {
-                            object.put("Username", saveName);
-                            object.put("Password", saveUserPassword);
-                            object.put("Email", saveUserEmail);
-                            object.put("Mobile", saveUserMobile);
-                            object.put("UserId", saveUserId);
-                            object.put("Wallet_id", saveWalletId);
+                         name = response.body().getProfile().getUsername();
+                         Email = response.body().getProfile().getEmail();
+                         Password = strPassword;
+                         Mobile = response.body().getProfile().getMobile();
+                         UserId = response.body().getProfile().getUserId();
+                         WalletId = response.body().getProfile().getWallet_id();
+                            getWalletBalance(WalletId);
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
 
-                        }
-                        /*Intent i = new Intent(SignInActivity.this, HomeActivity.class);
-                        startActivity(i);
-                        finish();*/
+
                     }
-
+                        Status ="0";
                 }
             }
             @Override
@@ -87,8 +79,41 @@ public class LoginClass {
             }
         });
 
-        return object;
 
+
+
+    }
+
+    public static void getWalletBalance(String wallet_id) {
+
+        MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
+
+        String xAccessToken = "mykey";
+
+
+
+        MultipartBody.Part seller_id_body = MultipartBody.Part.createFormData("wallet_id", wallet_id);
+
+        mainAPIInterface.getWalletTransactions(xAccessToken, seller_id_body).enqueue(new Callback<GetWalletTransactionsOutput>() {
+            @Override
+            public void onResponse(Call<GetWalletTransactionsOutput> call, Response<GetWalletTransactionsOutput> response) {
+
+                if (response.isSuccessful()) {
+
+                    if (response.body().getSuccess().equalsIgnoreCase("1")) {
+
+                        mainWalletBalance = response.body().getBalance();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GetWalletTransactionsOutput> call, Throwable t) {
+                Log.i("tag", t.getMessage().toString());
+            }
+        });
 
     }
 }
