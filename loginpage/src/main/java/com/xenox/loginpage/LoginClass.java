@@ -71,15 +71,21 @@ public class LoginClass {
                          WalletId = response.body().getProfile().getWallet_id();
                             getWalletBalance(WalletId);
 
+
+                            JSONObject object = new JSONObject();
+                            try {
+                                object.put("name",name);
+                                object.put("Email",Email);
+                                object.put("Password",Password);
+                                object.put("Mobile",Mobile);
+                                object.put("UserId",UserId);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                             if (callbacks != null)
-                                callbacks.onSuccess(name);
-
-
-
-
-
-
-                    }
+                                callbacks.onSuccess(object.toString());
+                        }
                         Status ="0";
                 }
             }
