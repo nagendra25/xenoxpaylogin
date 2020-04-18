@@ -6,5 +6,7 @@
     <color name="white">#FFFFFF</color>
     <color name="textSub">#ff76818a</color>
     <color name="grey_light_tertiary">#eeeeee</color>
+    <color name="Tex">#ff404547</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
