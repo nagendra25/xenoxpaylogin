@@ -3,10 +3,14 @@ package com.xenox.loginpage;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.xenox.loginpage.view.MyEditText;
+import com.xenox.loginpage.view.MyTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +30,9 @@ public class XenoxPayLogon extends AppCompatActivity {
     public static String WalletId="";
     public  static String Status = "";
     public static String mainWalletBalance ="";
+    MainAPIInterface  mainAPIInterface;
+   private MyEditText edtMobile,edtPassword;
+   private MyTextView signin1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +40,38 @@ public class XenoxPayLogon extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_xenox_pay_logon);
 
+          mainAPIInterface = ApiUtils.getAPIService();
+        edtMobile= (MyEditText)findViewById(R.id.edtMobile);
+        edtPassword =(MyEditText)findViewById(R.id.edtPassword);
+        signin1 =(MyTextView)findViewById(R.id.signin1);
+
+
+        signin1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (edtMobile.getText().toString().length() < 5) {
+                    edtMobile.setFocusable(true);
+                    edtMobile.setError("Eneter mobile number");
+                } else if (edtPassword.getText().toString().length() < 5) {
+                    edtPassword.setFocusable(true);
+                    edtPassword.setError("Enter password");
+                } else {
+                    userLoginRequest(XenoxPayLogon.this,edtMobile.getText().toString(),edtPassword.getText().toString(),"dgagdhafxghasxchgzcxhb");
+                }
+
+            }
+        });
+
+
     }
 
-    public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
+    private  void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
         String xAccessToken = "mykey";
 
-        MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
+
 
         MultipartBody.Part phone_body = MultipartBody.Part.createFormData("phone_no", strMobile);
 
