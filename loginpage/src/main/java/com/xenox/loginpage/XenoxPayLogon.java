@@ -151,6 +151,7 @@ public class XenoxPayLogon extends AppCompatActivity {
                         mainWalletBalance = response.body().getBalance();
 
                         Intent intent = new Intent(XenoxPayLogon.this,XenoxPayPaymentActivity.class);
+                        intent.putExtra("mainWalletBalance",mainWalletBalance);
 
                         startActivity(intent);
 
