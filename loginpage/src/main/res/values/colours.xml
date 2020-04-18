@@ -5,4 +5,6 @@
     <color name="colorAccent">#1fc21f</color>
     <color name="white">#FFFFFF</color>
     <color name="textSub">#ff76818a</color>
+    <color name="grey_light_tertiary">#eeeeee</color>
+
 </resources>
