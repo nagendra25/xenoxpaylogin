@@ -22,7 +22,7 @@ import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
-public class LoginClass  {
+public class LoginClass {
 
     public static  String name="";
     public static  String Email="";
