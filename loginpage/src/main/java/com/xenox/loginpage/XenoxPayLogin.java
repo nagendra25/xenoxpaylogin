@@ -33,6 +33,8 @@ public  class XenoxPayLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xenox_pay_login);
+
+        LoginClass.userLoginRequest(XenoxPayLogin.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2",this);
     }
 
 
