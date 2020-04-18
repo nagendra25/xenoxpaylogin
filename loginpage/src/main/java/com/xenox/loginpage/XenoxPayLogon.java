@@ -1,6 +1,7 @@
 package com.xenox.loginpage;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -129,7 +130,7 @@ public class XenoxPayLogon extends AppCompatActivity {
 
     }
 
-    public static void getWalletBalance(String wallet_id) {
+    private   void getWalletBalance(String wallet_id) {
 
         MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
 
@@ -148,6 +149,11 @@ public class XenoxPayLogon extends AppCompatActivity {
                     if (response.body().getSuccess().equalsIgnoreCase("1")) {
 
                         mainWalletBalance = response.body().getBalance();
+
+                        Intent intent = new Intent(XenoxPayLogon.this,XenoxPayPaymentActivity.class);
+
+                        startActivity(intent);
+
 
                     }
 

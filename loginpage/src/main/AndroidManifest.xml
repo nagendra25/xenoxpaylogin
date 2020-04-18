@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xenox.loginpage">
 
-    <application
-        android:theme="@style/AppTheme">
-        <activity android:theme="@style/AppTheme" android:name=".XenoxPayLogon"></activity>
+    <application android:theme="@style/AppTheme">
+        <activity android:name=".XenoxPayPaymentActivity"></activity>
+        <activity
+            android:name=".XenoxPayLogon"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
