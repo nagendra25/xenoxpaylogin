@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity implements RevealCourtPlaceC
         setContentView(R.layout.activity_main);
         String naw1 =LoginClass.getDistanceInKm();
 
-       /* Intent intent = new Intent(MainActivity.this,XenoxPayLogin.class);
-        startActivity(intent);*/
+        Intent intent = new Intent(MainActivity.this,XenoxPayLogon.class);
+        startActivity(intent);
 
 
 
 
-       LoginClass.userLoginRequest(MainActivity.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2",this);
+       //LoginClass.userLoginRequest(MainActivity.this,"9029526913","123456","2414414fsffsdfsfsfsfsa2",this);
 
 
     }
