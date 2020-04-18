@@ -77,7 +77,6 @@
                 android:layout_marginTop="5dp"
                 android:textColor="#100b20"
                 android:textColorHint="#a9aaac">
-
                 <com.xenox.loginpage.view.MyEditText
                     android:id="@+id/edtMobile"
                     android:layout_width="match_parent"

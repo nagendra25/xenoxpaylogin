@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatEditText;
 public class MyEditText  extends AppCompatEditText {
 
     public MyEditText(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+        super(context, attrs, defStyle  );
         init();
     }
 
