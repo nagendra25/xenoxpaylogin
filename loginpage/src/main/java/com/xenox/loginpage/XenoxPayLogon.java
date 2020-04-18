@@ -30,7 +30,9 @@ public class XenoxPayLogon extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_xenox_pay_logon);
+
     }
 
     public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId) {
