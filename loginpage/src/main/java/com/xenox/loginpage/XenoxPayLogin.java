@@ -1,12 +1,8 @@
 package com.xenox.loginpage;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.Location;
-import android.util.Log;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,9 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.Context.MODE_PRIVATE;
-
-public class LoginClass  {
+public  class XenoxPayLogin extends AppCompatActivity {
 
     public static  String name="";
     public static  String Email="";
@@ -35,11 +29,15 @@ public class LoginClass  {
 
     public UserProfileOutput userProfileOutput;
 
-    public static String getDistanceInKm(){
-        return name;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_xenox_pay_login);
     }
-    public static void userLoginRequest( final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId,
-    @Nullable final RevealCourtPlaceCallbacks callbacks) {
+
+
+    public static void userLoginRequest(final AppCompatActivity activity, String strMobile, final String strPassword, String strFcmId,
+                                        @Nullable final RevealCourtPlaceCallbacks callbacks) {
         String xAccessToken = "mykey";
 
         MainAPIInterface  mainAPIInterface = ApiUtils.getAPIService();
@@ -59,34 +57,34 @@ public class LoginClass  {
                 if (response.isSuccessful()) {
 
 
-                        if (response.body().getSuccess().equalsIgnoreCase("1")) {
-                            Status = "1";
+                    if (response.body().getSuccess().equalsIgnoreCase("1")) {
+                        Status = "1";
 
                         Toast.makeText(activity, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                             name = response.body().getProfile().getUsername();
-                         Email = response.body().getProfile().getEmail();
-                         Password = strPassword;
-                         Mobile = response.body().getProfile().getMobile();
-                         UserId = response.body().getProfile().getUserId();
-                         WalletId = response.body().getProfile().getWallet_id();
-                            getWalletBalance(WalletId);
+                        name = response.body().getProfile().getUsername();
+                        Email = response.body().getProfile().getEmail();
+                        Password = strPassword;
+                        Mobile = response.body().getProfile().getMobile();
+                        UserId = response.body().getProfile().getUserId();
+                        WalletId = response.body().getProfile().getWallet_id();
+                        getWalletBalance(WalletId);
 
 
-                            JSONObject object = new JSONObject();
-                            try {
-                                object.put("name",name);
-                                object.put("Email",Email);
-                                object.put("Password",Password);
-                                object.put("Mobile",Mobile);
-                                object.put("UserId",UserId);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                            if (callbacks != null)
-                                callbacks.onSuccess(object.toString());
+                        JSONObject object = new JSONObject();
+                        try {
+                            object.put("name",name);
+                            object.put("Email",Email);
+                            object.put("Password",Password);
+                            object.put("Mobile",Mobile);
+                            object.put("UserId",UserId);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        Status ="0";
+
+                        if (callbacks != null)
+                            callbacks.onSuccess(object.toString());
+                    }
+                    Status ="0";
                 }
             }
             @Override
